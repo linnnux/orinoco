@@ -4,8 +4,10 @@
   <html>
   <head>
 
-  	<script src="../src/Pannier.js"></script>
-  	<script src="../src/Form.js"></script>
+    <script src="../src/Cart.js"></script>
+    <script src="../src/Form.js"></script>
+    <script src="../src/main.js"></script>
+
 
 
   </head>
@@ -17,11 +19,10 @@
 
   <!--  onsubmit="return validateForm(pannier) : la fonction prend en paramètre la valeur pannier isEmpty pour tester s'il est vide ) -->
 
-  <form name="myForm" action="/action_page.php" onsubmit="return validateForm(pannier)" method="post">
+  <form name="myForm" action="/action_page.php" onsubmit="return form.validateForm(cart)" method="post">
     Name: <input type="text" name="name">
     first Name: <input type="text" name="fname">
-  	<p>Click the button to create a Submit Button.</p>
-    <input type="submit" value="Submit">
+      <input type="submit" value="Submit">
   </form>
 
 
