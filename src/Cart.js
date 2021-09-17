@@ -5,13 +5,13 @@ class Cart
 
 	constructor()
 	{
-			this._itemsNumbers = 1;
+			this.itemsNumbers = 1;
 	}
 
 
 	isEmpty()
 	{
-		if(this._itemsNumbers <= 0)
+		if(this.itemsNumbers <= 0)
 		{
 			return true
 		}

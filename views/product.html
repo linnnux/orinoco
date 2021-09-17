@@ -1,1 +1,57 @@
 <!-- Product template -- >
+
+  <!-- Form template -->
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+      <script src="../src/Product.js"></script>
+      <script src="../src/Cart.js"></script>
+      <script src="../src/Form.js"></script>
+      <script src="../src/main.js"></script>
+
+
+
+    </head>
+
+
+    <body>
+
+      <div class="w3-container w3-pale-red w3-center" style="margin:10%">
+
+
+        <div class="w3-card-4 w3-dark-grey" style="margin:5%">
+
+          <div class="w3-container w3-center">
+            <h3 id="title">TITLE</h3>
+            <img id="myImg"   alt="Avatar" style="width:80%">
+            <h5 id="price">PRICE</h5>
+
+            <div class="w3-section">
+              <button class="w3-button w3-green">Accept</button>
+              <button class="w3-button w3-red">Decline</button>
+            </div>
+          </div>
+          <div class="w3-container">
+          <p id="description">DESCRIPTION</p>
+          <hr>
+
+        </div>
+
+        </div>
+      </div>
+
+    <script>
+      product = new Product()
+
+      product.displayDescription();
+      prodicutID = '5be9c8541c9d440000665243';
+      product.getProduct(prodicutID);
+
+    </script>
+
+    </body>
+    </html>
