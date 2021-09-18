@@ -1,1 +1,52 @@
-<!-- Cart template -- >
+<!-- Cart template -->
+
+
+      <!DOCTYPE html>
+      <html lang="fr">
+      <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <title> Products </title>
+        <script src="../src/Product.js"></script>
+        <script src="../src/Cart.js"></script>
+        <script src="../src/Form.js"></script>
+        <script src="../src/main.js"></script>
+
+
+
+      </head>
+
+
+      <body>
+
+        <ul id="panier" class="w3-col w3-padding w3-margin w3-sand">
+          <h1>Panier</h1>
+        </ul>
+
+
+
+        <script>
+
+          cart = new Cart()
+          product = new Product()
+
+          prodicutID = '5be9c8541c9d440000665243';
+          product.setProduct(prodicutID);
+          console.log('salam-->'+product.url);
+
+          localStorage.setItem(prodicutID, prodicutID);
+          // Check browser support
+          if (localStorage.clickcount) {
+            localStorage.clickcount = Number(localStorage.clickcount) + 1;
+          } else {
+            localStorage.clickcount = 1;
+          }
+          document.getElementById("result").innerHTML = "You have clicked the button " +
+          localStorage.clickcount + " time(s).";
+          console.log('hello cart '+cart);
+
+        </script>
+      </body>
+      </html>

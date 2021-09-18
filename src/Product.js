@@ -3,12 +3,19 @@
 class Product
 {
 
-	constructor()
+	constructor(productId)
 	{
 		this.url = 'http://localhost:3000/api/teddies/';
-		this.title = 'product title';
-		this.description = 'product description';
-	}
+		this.productId = productId;
+		localStorage.setItem('productId', productId);
+
+		let url = this.url+productId;
+		this.name 				= '';
+		this.description  = '';
+		this.price 				= '';
+		this.imageUrl  		= '';
+		this.getProduct(productId)
+ 	}
 
 	setTitile(title)
 	{
@@ -21,9 +28,9 @@ class Product
 		document.getElementById("description").innerHTML = this.description;
 	}
 
-	async getProduct(prodicutID)
+	async getProduct(productId)
 	{
-			let url = this.url+prodicutID;
+			let url = this.url+productId;
 			console.log(this.url);
 		  let myPromise = new Promise(function(myResolve, myReject)
 			{
@@ -48,16 +55,67 @@ class Product
 
 
 			const obj = JSON.parse(await myPromise);
+			try
+			{
+				document.getElementById("title").innerHTML = obj.name;
+				document.getElementById("description").innerHTML = obj.description;
+				document.getElementById("price").innerHTML = obj.price;
+				document.getElementById("myImg").src  = obj.imageUrl;
+				document.getElementById("cart").innerHTML = localStorage.clickcount
+				document.getElementById("addToCart").addEventListener("click", Product.addToCart, true);
+				document.getElementById("removeFromCart").addEventListener("click", Product.removeFromCart, true);
+				document.getElementById("cart").innerHTML = localStorage.getItem(productId);
 
-			document.getElementById("title").innerHTML = obj.name;
-			document.getElementById("description").innerHTML = obj.description;
-			document.getElementById("price").innerHTML = obj.price;
-			document.getElementById("myImg").src  = obj.imageUrl;
+			}
+			catch (e)
+			{
+				console.log('error');
+			}
+
 
 
 
 
 		}
+
+		async setProduct(productId)
+		{
+				let url = this.url+productId;
+				console.log(this.url);
+				let myPromise = new Promise(function(myResolve, myReject)
+				{
+					let request = new XMLHttpRequest();
+					request.open("GET", url);
+
+					request.onload = function()
+					{
+						if (this.readyState == XMLHttpRequest.DONE && request.status == 200)
+						{
+							var reponse = JSON.parse(this.responseText);
+
+							myResolve(request.response);
+							}
+						else
+						{
+							myResolve("Product not Found");
+						}
+					};
+					request.send();
+				});
+
+
+				const obj = JSON.parse(await myPromise);
+
+				this.name = obj.name;
+				this.description= obj.description;
+				this.price = obj.price;
+				this.imageUrl  = obj.imageUrl;
+				console.log(this.imageUrl);
+
+
+
+			}
+
 
 		async getProducts()
 		{
@@ -138,6 +196,58 @@ class Product
 
 
 
+			}
+
+	 		static addToCart()
+			{
+
+
+
+				//var id = localStorage.getItem("productId");
+				if(typeof(Storage) !== "undefined")
+				{
+					let productId = localStorage.productId;
+					var count = localStorage.getItem(productId);
+
+					count = Number(count)+1;
+
+					if (localStorage.productId && localStorage.getItem(productId)< 5)
+					{
+
+						localStorage.setItem(productId, count);
+					}
+
+					document.getElementById("cart").innerHTML = localStorage.getItem(productId);
+				}
+				else
+				{
+					document.getElementById("cart").innerHTML = "Sorry, your browser does not support web storage...";
+				}
+			}
+			static removeFromCart()
+			{
+
+
+								//var id = localStorage.getItem("productId");
+								if(typeof(Storage) !== "undefined")
+								{
+									let productId = localStorage.productId;
+									var count = localStorage.getItem(productId);
+
+									count = Number(count)-1;
+
+									if (localStorage.productId && localStorage.getItem(productId)> 0)
+									{
+
+										localStorage.setItem(productId, count);
+									}
+
+									document.getElementById("cart").innerHTML = localStorage.getItem(productId);
+								}
+								else
+								{
+									document.getElementById("cart").innerHTML = "Sorry, your browser does not support web storage...";
+								}
 			}
 
 
