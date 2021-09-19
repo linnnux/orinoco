@@ -6,15 +6,16 @@ class Product
 	constructor(productId)
 	{
 		this.url = 'http://localhost:3000/api/teddies/';
-		this.productId = productId;
-		localStorage.setItem('productId', productId);
+		this.productId = localStorage.getItem('productId');
+		//localStorage.setItem('productId', productId);
 
-		let url = this.url+productId;
+		let url = this.url+this.productId;
+		console.log('---->'+this.productId );
 		this.name 				= '';
 		this.description  = '';
 		this.price 				= '';
 		this.imageUrl  		= '';
-		this.getProduct(productId)
+		this.getProduct(this.productId)
  	}
 
 	setTitile(title)
@@ -149,17 +150,29 @@ class Product
 
 				for(i = 0; i < obj.length; i++)
 				{
-					console.log(obj[i]);
+ 					let id = obj[i]._id;
 
 					const article = document.createElement("article");
 								article.setAttribute("class","w3-card w3-teal w3-margin w3-padding w3-text-white w3-hover-opacity");
+					const a = document.createElement("a");
+			 					//a.setAttribute("href","product.html");
+
 
 					const titre = document.createElement("h2");
 					const nodeTitre = document.createTextNode(obj[i].name);
 					titre.setAttribute("class","w3-card w3-orange w3-margin w3-padding w3-text-white w3-large");
 
+					titre.addEventListener("click", function() {  myFun(id); });
 					titre.appendChild(nodeTitre);
+					a.appendChild(article);
 
+					function myFun(id)
+					{
+						alert(id);
+						localStorage.setItem('productId', id);
+						location.replace("product.html")
+
+					}
 					const para = document.createElement("p");
 					const node = document.createTextNode(obj[i].description);
 					para.appendChild(node);
@@ -179,15 +192,20 @@ class Product
 					 imgage.setAttribute("class", "w3-col w3-image");
 					 imgage.setAttribute("alt", obj[i].name);
 
+
 					article.appendChild(titre);
 				 	article.appendChild(para);
 
 				 	article.appendChild(imgage);
 					article.appendChild(price);
 
+
+
+
+
 					const list = document.createElement("li");
 								list.setAttribute("class","w3-col m6 l3 w3-center w3-sand");
-								list.appendChild(article);
+								list.appendChild(a);
 
 					const element = document.getElementById("div1");
 						    element.appendChild(list);

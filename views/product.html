@@ -54,9 +54,10 @@
 
     <script>
 
-      prodicutID = '5beaaa8f1c9d440000a57d95';
 
-      product = new Product(prodicutID)
+      let id = localStorage.getItem("productId");
+      console.log(id);
+      product = new Product()
 
       //product.getProduct(prodicutID);
 
