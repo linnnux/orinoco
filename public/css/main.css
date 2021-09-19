@@ -1,0 +1,9 @@
+
+*
+{
+  font-family: Chalkduster, fantasy;
+}
+.grad
+{
+  background-image: linear-gradient(120deg, orange ,orange , pink, pink,purple);
+}
