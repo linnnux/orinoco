@@ -5,7 +5,7 @@ class Cart
 
 	constructor()
 	{
-			this.itemsNumbers = 1;
+			this.itemsNumbers = 0;
 	}
 
 

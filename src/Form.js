@@ -6,8 +6,7 @@ class Form
 
   validateForm(cart)
   {
-    console.log(cart.isEmpty());
-    if (document.forms["myForm"]["name"].value == "")
+     if (document.forms["myForm"]["name"].value == "")
     {
       alert("Name must be filled out");
       return false;
